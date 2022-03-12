@@ -10,7 +10,9 @@ function VerticalList({ data, className }) {
     <ul className={classNames([classes.root, className])}>
       {data.map((entry) => (
         <li key={entry.id} className={classes.item}>
-          <GameCard {...entry} />
+          <Link to={`/games/${entry.id}`} className={classes.link}>
+            <GameCard {...entry} />
+          </Link>
         </li>
       ))}
     </ul>
