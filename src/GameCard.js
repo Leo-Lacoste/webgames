@@ -10,7 +10,9 @@ function GameCard({ id, background_image, name }) {
         alt="backround"
       />
       <div className={classes.textCard}>
-        <h1 className={classes.titleCard}>{name}</h1>
+        <div className={classes.titleCard}>
+          <p>{name}</p>
+        </div>
         <button className={classes.biblioBtn}>
           <span className={classes.biblio} classrole="img" aria-label="star">
             ⭐

@@ -17,9 +17,7 @@ const useStyles = createUseStyles({
   },
   background: {
     width: "100%",
-  },
-  titleCard: {
-    fontSize: "10px",
+    height: "92px",
   },
   textCard: {
     width: "100%",
@@ -29,7 +27,11 @@ const useStyles = createUseStyles({
     right: 0,
     justifyContent: "right",
     paddingLeft: 10,
-    verticalAlign: "baseline",
+  },
+  titleCard: {
+    fontSize: "10px",
+    textAlign: "center",
+    flex: 1,
   },
   biblioBtn: {
     backgroundColor: "rgb(77, 73, 73)",
