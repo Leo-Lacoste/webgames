@@ -1,6 +1,7 @@
 import useStyles from "./GameDetail.style";
 import data from "./data.json";
 import GenreGame from "./GenreGame";
+import RatingGame from "./RatingGame";
 
 function GameDetail() {
   const classes = useStyles();
@@ -32,13 +33,13 @@ function GameDetail() {
             alt="backgroundGame"
           />
         </div>
-        <div className={classes.body}>
+        <div className={classes.bodyGame}>
           <h2>{dataCharacterExample.name}</h2>
           <h3>Sortie le {dateSortie}</h3>
           <div className={classes.genreList}>
             {dataCharacterExample.genres.map((genre) => {
               return (
-                <div key={genre.id}>
+                <div className={classes.genreListItem} key={genre.id}>
                   <GenreGame
                     name={genre.name}
                     background={genre.image_background}
@@ -47,6 +48,11 @@ function GameDetail() {
               );
             })}
           </div>
+          <RatingGame
+            rating={dataCharacterExample.rating}
+            nbVotes={dataCharacterExample.ratings_count}
+            noteMetacritic={dataCharacterExample.metacritic}
+          />
         </div>
       </div>
     </div>

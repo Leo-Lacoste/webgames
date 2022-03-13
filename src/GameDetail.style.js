@@ -7,8 +7,9 @@ const useStyles = createUseStyles({
   main: {
     marginTop: 10,
   },
-  body: {
+  bodyGame: {
     padding: 16,
+    textAlign: "center",
   },
   background: {
     width: "100%",
@@ -24,6 +25,7 @@ const useStyles = createUseStyles({
     display: "flex",
     flexWrap: "wrap",
   },
+  genreListItem: { marginLeft: 20 },
 });
 
 export default useStyles;
