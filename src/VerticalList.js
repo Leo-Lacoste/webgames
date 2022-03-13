@@ -7,7 +7,10 @@ import useStyles from "./VerticalList.style";
 function VerticalList({ data, className }) {
   const classes = useStyles();
   return (
-    <ul className={classNames([classes.root, className])}>
+    <ul
+      className={classNames([classes.root, className])}
+      data-testid="listOfGames"
+    >
       {data.map((entry) => (
         <li key={entry.id} className={classes.item}>
           <Link to={`/games/${entry.id}`} className={classes.link}>
