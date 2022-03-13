@@ -8,7 +8,7 @@ const useStyles = createUseStyles({
     backgroundSize: "contain",
     backgroundRepeat: "no-repeat",
     color: "black",
-    fontSize: "20px",
+    fontSize: "17px",
     fontWeight: "250",
     textAlign: "center",
     lineHeight: "50px",

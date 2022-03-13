@@ -2,6 +2,9 @@ import useStyles from "./GameDetail.style";
 import data from "./data.json";
 import GenreGame from "./GenreGame";
 import RatingGame from "./RatingGame";
+import GameLikeList from "./GameLikeList";
+import dataLike from "./data_gamesLike.json";
+import BackButton from "./BackButton";
 
 function GameDetail() {
   const classes = useStyles();
@@ -23,7 +26,7 @@ function GameDetail() {
   return (
     <div className={classes.root}>
       <div className={classes.back}>
-        <button>Back</button>
+        <BackButton />
       </div>
       <div className={classes.main}>
         <div className={classes.header}>
@@ -53,6 +56,9 @@ function GameDetail() {
             nbVotes={dataCharacterExample.ratings_count}
             noteMetacritic={dataCharacterExample.metacritic}
           />
+          <div className={classes.gameLikeList}>
+            <GameLikeList data={dataLike.results} />
+          </div>
         </div>
       </div>
     </div>

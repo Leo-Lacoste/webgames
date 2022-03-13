@@ -7,7 +7,7 @@ function GameCard({ id, background_image, name }) {
       <img
         className={classes.background}
         src={background_image}
-        alt="backround"
+        alt="background"
       />
       <div className={classes.textCard}>
         <div className={classes.titleCard}>
