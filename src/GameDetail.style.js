@@ -3,10 +3,15 @@ import { createUseStyles } from "react-jss";
 const useStyles = createUseStyles({
   root: {
     justifyContent: "center",
+  },
+  main: {
+    marginTop: 10,
+  },
+  body: {
     padding: 16,
   },
   background: {
-    width: 150,
+    width: "100%",
   },
   biblioBtn: {
     background: "black",
@@ -14,6 +19,10 @@ const useStyles = createUseStyles({
   },
   biblio: {
     filter: "grayscale(100%)",
+  },
+  genreList: {
+    display: "flex",
+    flexWrap: "wrap",
   },
 });
 
