@@ -37,6 +37,10 @@ const useStyles = createUseStyles({
     backgroundColor: "rgb(77, 73, 73)",
     border: "none",
     marginLeft: 10,
+    filter: "grayscale(1)",
+  },
+  added: {
+    filter: "grayscale(0)",
   },
 });
 export default useStyles;
