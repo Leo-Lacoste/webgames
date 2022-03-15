@@ -12,6 +12,14 @@ function buildUrl(value) {
   return `${process.env.REACT_APP_API_URL}/games/${value}?key=${process.env.REACT_APP_API_KEY}`;
 }
 
+function buildUrlGameLike(value) {
+  return `${process.env.REACT_APP_API_URL}/games?key=${process.env.REACT_APP_API_KEY}&page=10&page_size=10&genres=${value}`;
+}
+
+function getRandomInt(max) {
+  return Math.floor(Math.random() * max);
+}
+
 function GameDetail() {
   const classes = useStyles();
 
@@ -24,7 +32,7 @@ function GameDetail() {
   );
 
   let dataGame = data;
-  console.log(dataGame);
+  //console.log(dataGame);
   //const dataGame = data.results[1];
 
   const optionsDate = {
@@ -34,12 +42,33 @@ function GameDetail() {
     day: "numeric",
   };
   let dateSortie;
+  let valueGenre;
   if (!isLoading && !error) {
     const dateChamps = dataGame.released.split("-");
     //console.log(dateChamps);
     const date = new Date(dateChamps[0], dateChamps[1] - 1, dateChamps[2]);
     dateSortie = date.toLocaleDateString(undefined, optionsDate);
+    valueGenre = dataGame.genres[getRandomInt(dataGame.genres.length)].id;
+    //console.log("value" + valueGenre);
+    /* console.log(
+      dataGame.genres.filter((genre) => genre.id === valueGenre)[0].name
+    );*/
   }
+
+  //console.log(valueGenre);
+
+  const {
+    data: dataGameLike,
+    isLoading: isLoadingGameLike,
+    isFetching: isFetchingGameLike,
+    error: errorGameLike,
+  } = useQuery(["gameLike", valueGenre], () =>
+    fetch(buildUrlGameLike(valueGenre)).then((response) => response.json())
+  );
+
+  //console.log(dataGameLike);
+
+  //console.log(dataLike.results[0].genres.length);
 
   return (
     <div className={classes.root}>
@@ -77,9 +106,22 @@ function GameDetail() {
               nbVotes={dataGame.ratings_count}
               noteMetacritic={dataGame.metacritic}
             />
-            <div className={classes.gameLikeList}>
-              <GameLikeList data={dataLike.results} />
-            </div>
+            {errorGameLike && <div className={classes.error}>{error}</div>}
+            {(isLoadingGameLike || isFetchingGameLike) && (
+              <div>Loading movies...</div>
+            )}
+            {!isLoadingGameLike && !errorGameLike && (
+              <div className={classes.gameLikeList}>
+                <h4>
+                  {
+                    dataGame.genres.filter(
+                      (genre) => genre.id === valueGenre
+                    )[0].name
+                  }
+                </h4>
+                <GameLikeList data={dataGameLike?.results} />
+              </div>
+            )}
           </div>
         </div>
       )}
