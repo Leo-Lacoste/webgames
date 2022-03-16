@@ -1,15 +1,15 @@
 import classNames from "classnames";
 import { useDispatch, useSelector } from "react-redux";
 import useStyles from "./GameCard.style";
-import { favoritesSlice } from "./slices";
+import { bibliothequeSlice } from "./slices";
 
 function GameCard({ id, background_image, name }) {
   const classes = useStyles();
-  const favorites = useSelector((state) => state.favorites);
+  const bibliotheque = useSelector((state) => state.bibliotheque);
   const dispatch = useDispatch();
-  const addToFavorite = (event) => {
+  const addToBibliotheque = (event) => {
     event.preventDefault();
-    dispatch(favoritesSlice.actions.toggle({ id }));
+    dispatch(bibliothequeSlice.actions.toggle({ id }));
   };
   return (
     <div className={classes.root}>
@@ -24,9 +24,9 @@ function GameCard({ id, background_image, name }) {
         </div>
         <button
           className={classNames(classes.biblioBtn, {
-            [classes.added]: favorites.includes(id),
+            [classes.added]: bibliotheque.includes(id),
           })}
-          onClick={addToFavorite}
+          onClick={addToBibliotheque}
         >
           <span className={classes.biblio} classrole="img" aria-label="star">
             ⭐

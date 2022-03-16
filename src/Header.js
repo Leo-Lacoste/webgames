@@ -4,12 +4,15 @@ import useStyles from "./Header.style";
 
 function Header() {
   const classes = useStyles();
-  const favorites = useSelector((state) => state.favorites);
+  const bibliotheque = useSelector((state) => state.bibliotheque);
   return (
     <div className={classes.root}>
-      🕹️ Video Games App 🕹️
-      <Link className={classes.link} to="/favorites">
-        {`Favorites (${favorites.length})`}
+      <Link className={classes.linkHome} to="/">
+        <span>🏠</span>
+      </Link>
+      Games App 🕹️
+      <Link className={classes.link} to="/bibliotheque">
+        {`Bibliothèque (${bibliotheque.length})`}
       </Link>
     </div>
   );

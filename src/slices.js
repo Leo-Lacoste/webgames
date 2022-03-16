@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-export const favoritesSlice = createSlice({
-  name: "favorites",
+export const bibliothequeSlice = createSlice({
+  name: "bibliotheque",
   initialState: [],
   reducers: {
     add: (state, action) =>

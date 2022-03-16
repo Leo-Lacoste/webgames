@@ -20,10 +20,10 @@ import {
 } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 import createSagaMiddleware from "redux-saga";
-import { favoritesSlice, gamesSlice } from "./slices";
+import { bibliothequeSlice, gamesSlice } from "./slices";
 import { rootSaga } from "./sagas";
 
-import Favorites from "./Favorites";
+import Bibliotheque from "./Bibliotheque";
 
 const queryClient = new QueryClient();
 
@@ -35,7 +35,7 @@ const persistConfig = {
 const persistedReducer = persistReducer(
   persistConfig,
   combineReducers({
-    favorites: favoritesSlice.reducer,
+    bibliotheque: bibliothequeSlice.reducer,
     games: gamesSlice.reducer,
   })
 );
@@ -70,7 +70,7 @@ function App() {
                 <Routes>
                   <Route path="/" element={<Home />} />
                   <Route path="/games/:id" element={<GameDetail />} />
-                  <Route path="/favorites" element={<Favorites />} />
+                  <Route path="/bibliotheque" element={<Bibliotheque />} />
                 </Routes>
               </main>
             </BrowserRouter>
