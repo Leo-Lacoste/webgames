@@ -7,8 +7,8 @@ import GameLikeList from "./GameLikeList";
 import BackButton from "./BackButton";
 import { useQuery } from "react-query";
 import { useParams } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { gamesSlice } from "./slices";
+import { useSelector } from "react-redux";
+//import { gamesSlice } from "./slices";
 
 function buildUrlGameLike(value) {
   return `${process.env.REACT_APP_API_URL}/games?key=${process.env.REACT_APP_API_KEY}&page=10&page_size=10&genres=${value}`;
@@ -27,7 +27,7 @@ function GameDetail() {
   const games = useSelector((state) => state.games);
   const data = games.filter((game) => game.id == idGame)[0];
 
-  const dispatch = useDispatch();
+  //const dispatch = useDispatch();
   /*const addToGames = (game) => {
     dispatch(gamesSlice.actions.addGames({ game }));
   };*/
