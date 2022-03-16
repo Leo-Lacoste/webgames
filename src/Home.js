@@ -5,12 +5,7 @@ import Input from "./Input";
 
 import { useSearchParams } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { useQuery } from "react-query";
 import { useDispatch, useSelector } from "react-redux";
-
-function buildUrl() {
-  return `${process.env.REACT_APP_API_URL}/games?key=${process.env.REACT_APP_API_KEY}&page=1&page_size=50`;
-}
 
 function Home() {
   const classes = useStyles();
@@ -21,9 +16,6 @@ function Home() {
 
   const games = useSelector((state) => state.games);
 
-  /*const { data, isLoading, isFetching, error } = useQuery(["movies"], () =>
-    fetch(buildUrl()).then((response) => response.json())
-  );*/
   //console.log(data);
   //let dataSend = data?.results;
   let dataSend = games;

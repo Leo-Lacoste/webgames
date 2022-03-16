@@ -1,18 +1,14 @@
 import useStyles from "./GameDetail.style";
-import data from "./data.json";
+//import data from "./data.json";
 import GenreGame from "./GenreGame";
 import RatingGame from "./RatingGame";
 import GameLikeList from "./GameLikeList";
-import dataLike from "./data_gamesLike.json";
+//import dataLike from "./data_gamesLike.json";
 import BackButton from "./BackButton";
 import { useQuery } from "react-query";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { gamesSlice } from "./slices";
-
-function buildUrl(value) {
-  return `${process.env.REACT_APP_API_URL}/games/${value}?key=${process.env.REACT_APP_API_KEY}`;
-}
 
 function buildUrlGameLike(value) {
   return `${process.env.REACT_APP_API_URL}/games?key=${process.env.REACT_APP_API_KEY}&page=10&page_size=10&genres=${value}`;
@@ -28,21 +24,15 @@ function GameDetail() {
   const idGameObject = useParams();
   const idGame = idGameObject.id;
 
-  /*const { data, isLoading, isFetching, error } = useQuery(
-    ["game", idGame],
-    () => fetch(buildUrl(idGame)).then((response) => response.json())
-  );*/
   const games = useSelector((state) => state.games);
   const data = games.filter((game) => game.id == idGame)[0];
 
   const dispatch = useDispatch();
-  const addToGames = (game) => {
+  /*const addToGames = (game) => {
     dispatch(gamesSlice.actions.addGames({ game }));
-  };
+  };*/
 
   let dataGame = data;
-  //console.log(dataGame);
-  //const dataGame = data.results[1];
 
   const optionsDate = {
     weekday: "long",

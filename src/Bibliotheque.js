@@ -1,7 +1,6 @@
 import { useSelector } from "react-redux";
 import useStyles from "./Bibliotheque.style";
 import GameBiblio from "./GameBiblio";
-import GameLikeCard from "./GameLikeCard";
 
 function Bibliotheque() {
   const classes = useStyles();

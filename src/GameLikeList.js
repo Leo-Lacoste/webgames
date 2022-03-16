@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import GameLikeCard from "./GameLikeCard";
 import useStyles from "./GameLikeList.style";
 
