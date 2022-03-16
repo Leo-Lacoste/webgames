@@ -19,7 +19,10 @@ import {
   REGISTER,
 } from "redux-persist";
 import storage from "redux-persist/lib/storage";
-import { favoritesSlice } from "./slices";
+import createSagaMiddleware from "redux-saga";
+import { favoritesSlice, gamesSlice } from "./slices";
+import { rootSaga } from "./sagas";
+
 import Favorites from "./Favorites";
 
 const queryClient = new QueryClient();
@@ -33,18 +36,25 @@ const persistedReducer = persistReducer(
   persistConfig,
   combineReducers({
     favorites: favoritesSlice.reducer,
+    games: gamesSlice.reducer,
   })
 );
 
+const sagaMiddleware = createSagaMiddleware();
+
 const store = configureStore({
   reducer: persistedReducer,
-  middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware({
+  middleware: (getDefaultMiddleware) => [
+    ...getDefaultMiddleware({
       serializableCheck: {
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
     }),
+    sagaMiddleware,
+  ],
 });
+
+sagaMiddleware.run(rootSaga);
 
 const persistor = persistStore(store);
 

@@ -13,3 +13,16 @@ export const favoritesSlice = createSlice({
         : [...state, action.payload.id],
   },
 });
+
+export const gamesSlice = createSlice({
+  name: "games",
+  initialState: [],
+  reducers: {
+    add: (state, action) => [
+      ...state,
+      ...action.payload.games.filter(
+        (game) => !state.some(({ id }) => game.id === id)
+      ),
+    ],
+  },
+});

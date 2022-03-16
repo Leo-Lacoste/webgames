@@ -6,6 +6,7 @@ import Input from "./Input";
 import { useSearchParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { useQuery } from "react-query";
+import { useDispatch, useSelector } from "react-redux";
 
 function buildUrl() {
   return `${process.env.REACT_APP_API_URL}/games?key=${process.env.REACT_APP_API_KEY}&page=1&page_size=50`;
@@ -13,11 +14,19 @@ function buildUrl() {
 
 function Home() {
   const classes = useStyles();
-  const { data, isLoading, isFetching, error } = useQuery(["movies"], () =>
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch({ type: "FETCH_GAMES" });
+  }, [dispatch]);
+
+  const games = useSelector((state) => state.games);
+
+  /*const { data, isLoading, isFetching, error } = useQuery(["movies"], () =>
     fetch(buildUrl()).then((response) => response.json())
-  );
-  console.log(data);
-  let dataSend = data?.results;
+  );*/
+  //console.log(data);
+  //let dataSend = data?.results;
+  let dataSend = games;
   const [params, setParams] = useSearchParams();
   const [value, setValue] = useState(params.get("q") || "");
   const onChange = (event) => {
@@ -45,11 +54,7 @@ function Home() {
   return (
     <div className={classes.root}>
       <Input value={value} onChange={onChange} />
-      {error && <div className={classes.error}>{error}</div>}
-      {(isLoading || isFetching) && <div>Loading movies...</div>}
-      {!isLoading && !error && (
-        <VerticalList className={classes.list} data={dataSend} />
-      )}
+      <VerticalList className={classes.list} data={dataSend} />
     </div>
   );
 }

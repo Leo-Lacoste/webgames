@@ -8,9 +8,7 @@ function GameLikeList({ data }) {
     <ul className={classes.root}>
       {data.map((entry) => (
         <li key={entry.id} className={classes.item}>
-          <Link to={`/games/${entry.id}`} className={classes.link}>
-            <GameLikeCard {...entry} />
-          </Link>
+          <GameLikeCard {...entry} />
         </li>
       ))}
     </ul>
